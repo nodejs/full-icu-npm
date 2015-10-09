@@ -1,0 +1,4 @@
+*.dat
+node_modules
+.svn
+.git
