@@ -1,0 +1,20 @@
+{
+  "name": "full-icu",
+  "version": "0.0.1-ALPHA",
+  "description": "install 'full-icu' data for your current node",
+  "scripts": {
+    "postinstall": "node postinstall.js"
+  },
+  "keywords": [
+    "icu4c"
+  ],
+  "author": "The ICU Team; © 1997-2015 IBM Corporation and Others, All Rights Reserved",
+  "license": "MIT",
+  "dependencies": {
+    "npm": ">=2.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/icu-project/full-icu-npm.git"
+  },
+}
