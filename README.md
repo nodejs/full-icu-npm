@@ -17,5 +17,5 @@ This software is part of ICU, and as such is:
 
 Copyright (C) 2015 IBM Corporation and Others. All Rights Reserved.
 
-A copy of the ICU license is in (dist/license.html)[dist/license.html]
+A copy of the ICU license is in [LICENSE.html](LICENSE.html)
 or is available at https://ssl.icu-project.org/repos/icu/icu/trunk/license.html
