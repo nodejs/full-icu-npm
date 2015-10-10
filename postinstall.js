@@ -7,6 +7,8 @@ if(!process || !process.versions || !process.versions.node) {
 	throw Error('Sorry- don’t know what version of Node you are on.');
 }
 
+var myname = process.env.npm_package_name || 'full-icu';
+
 var nodever = process.versions.node;
 
 var nodesplit = nodever.split('.');
@@ -71,7 +73,7 @@ var icupkg = "icu4c-data@" + icumaj+icuend;
 var icudat = "icudt"+icumaj+icuend+".dat";
 
 var cwd = fs.realpathSync('.');
-var relpath = path.join('node_modules',"full-icu");
+var relpath = path.join('node_modules',myname);
 
 function advice() {
 	if(false /* nodever >= ### */) {
