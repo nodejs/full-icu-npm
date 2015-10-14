@@ -91,6 +91,11 @@ function advice() {
 			console.log(" For package.json:");
 			console.log(JSON.stringify(asJson));
 		}
+		console.log("");
+		console.log("By the way, if you have full data, running this in node:");
+		// 9E8 is 10 days into January, so TimeZone independent
+		console.log("> new Intl.DateTimeFormat('es',{month:'long'}).format(new Date(9E8));"); 
+		console.log("... will show “enero”. If it shows “January” you don't have full data.");
 	}
 }
 
