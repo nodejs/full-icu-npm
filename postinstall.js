@@ -1,4 +1,5 @@
 //var process = require('process');
+//console.dir(process.env);
 var npm = require('npm');
 var fs = require('fs');
 var path = require('path');
@@ -73,7 +74,11 @@ var icupkg = "icu4c-data@" + icumaj+icuend;
 var icudat = "icudt"+icumaj+icuend+".dat";
 
 var cwd = fs.realpathSync('.');
-var relpath = path.join('node_modules',myname);
+
+var isglobal = process.env.npm_config_global === 'true';
+
+var relpath = isglobal ? cwd : path.join('node_modules',myname);
+
 
 function advice() {
 	if(false /* nodever >= ### */) {
@@ -90,7 +95,7 @@ function advice() {
 }
 
 if(fs.existsSync(icudat)) {
-	console.log('√ ' + icudat + ' Already there ( for Node ' + nodever + ' and small-icu ' + icuver + ')');
+	console.log('√ ' + icudat + ' Already there (for Node ' + nodever + ' and small-icu ' + icuver + ')');
 	advice();
 } else {
 	console.log('npm install ' + icupkg + ' (Node ' + nodever + ' and small-icu ' + icuver + ') -> ' + icudat);

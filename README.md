@@ -5,6 +5,13 @@ to use:
 
 	npm install full-icu
 
+or for global install:
+
+	npm install -g full-icu
+	
+Instructions will be printed out on how to activate this data for your version fo node.
+
+
 MIRROR
 ===
 This is a mirror of source  currently  in
