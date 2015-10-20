@@ -1,4 +1,4 @@
-
+// Copyright (C) 2015 IBM Corporation and Others. All Rights Reserved.
 
 var fs = require('fs');
 var path = require('path');

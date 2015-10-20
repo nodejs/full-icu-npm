@@ -1,3 +1,5 @@
+// Copyright (C) 2015 IBM Corporation and Others. All Rights Reserved.
+
 // Install by calling NPM directly
 // Not recommended.  Requires a dependency on npm.
 

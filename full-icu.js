@@ -1,3 +1,5 @@
+// Copyright (C) 2015 IBM Corporation and Others. All Rights Reserved.
+
 //var process = require('process');
 //console.dir(process.env);
 
