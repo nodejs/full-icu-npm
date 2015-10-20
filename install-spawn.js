@@ -7,6 +7,8 @@ var path = require('path');
 var fs = require('fs');
 var child_process = require('child_process');
 
+var isglobal = process.env.npm_config_global === 'true';
+
 module.exports = function npmInstallNpm(fullIcu, advice) {
 	var icupkg = fullIcu.icupkg;
 	var icudat = fullIcu.icudat;
@@ -33,11 +35,16 @@ module.exports = function npmInstallNpm(fullIcu, advice) {
 	} else if(spawned.status !== 0) {
 		throw(Error(cmdPath + ' ' + args.join(' ') + ' --> status ' + spawned.status));
 	} else {
-		var datPath = path.join('node_modules','icu4c-data',icudat);
+		var datPath;
+		if(isglobal) {
+			datPath = path.join('..','icu4c-data',icudat);
+		} else {
+			datPath = path.join('node_modules','icu4c-data',icudat);
+		}
 		if(fs.existsSync(icudat)) {
 			console.log(' √ ' + icudat + " (existing symlink?)");
 		} else if(!fs.existsSync(datPath)) {
-			console.log(' • ' + ' (no ' + icudat + ')');
+			console.log(' • ' + ' (no ' + icudat + ' at ‘' + datPath+'’)');
 		} else {
 			try {
 				fs.symlinkSync(datPath, icudat);
