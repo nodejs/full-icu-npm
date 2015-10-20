@@ -69,4 +69,10 @@ if((node_maj == 0) && (node_min < 12)) {
 		if(!d) d = icudat;
 		return fs.existsSync(d);
 	}
+	
+	var datPath = module.exports.datPath = function datPath(d) {
+		if(!d) d = icudat;
+		if(haveDat(d)) return fs.realpathSync(d);
+		throw Error('Does not exist: ' + fs.realpathSync(d));
+	}
 }

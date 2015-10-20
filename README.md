@@ -47,6 +47,11 @@ version is available.
 
 * `oldNode` - Node is older (`<0.12`) than this package can really think about.
 
+BIN
+===
+
+`node-full-icu-path` will print the full `icudt*.dat` path, if available.
+
 MIRROR
 ===
 This is a mirror of source  currently  in
