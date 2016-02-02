@@ -12,7 +12,7 @@
     "node-full-icu-path": "./node-icu-data.js"
   },
   "main": "full-icu.js",
-  "author": "The ICU Team; © 1997-2015 IBM Corporation and Others, All Rights Reserved",
+  "author": "The ICU Team; © 1997-2016 IBM Corporation and Others, All Rights Reserved",
   "license": "MIT",
   "repository": {
     "type": "git",

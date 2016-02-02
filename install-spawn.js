@@ -1,4 +1,4 @@
-// Copyright (C) 2015 IBM Corporation and Others. All Rights Reserved.
+// Copyright (C) 2015-2016 IBM Corporation and Others. All Rights Reserved.
 
 // Install by using spawn
 // Not recommended.  Requires a dependency on npm.
@@ -42,16 +42,16 @@ module.exports = function npmInstallNpm(fullIcu, advice) {
 			datPath = path.join('node_modules','icu4c-data',icudat);
 		}
 		if(fs.existsSync(icudat)) {
-			console.log(' √ ' + icudat + " (existing symlink?)");
+			console.log(' √ ' + icudat + " (existing link?)");
 		} else if(!fs.existsSync(datPath)) {
 			console.log(' • ' + ' (no ' + icudat + ' at ‘' + datPath+'’)');
 		} else {
 			try {
+                fs.linkSync(datPath, icudat);
+                console.log(' √ ' + icudat + " (link)");
+			} catch(e) {
 				fs.symlinkSync(datPath, icudat);
 				console.log(' √ ' + icudat + " (symlink)");
-			} catch(e) {
-				fs.linkSync(datPath, icudat);
-				console.log(' √ ' + icudat + " (link)");
 			}
 		}
 		if(!fullIcu.haveDat()) {
