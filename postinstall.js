@@ -50,8 +50,7 @@ function advice() {
 	}
 }
 
-// This requires NPM as a dependency.
-// var npmInstall = require('./install-npm');
+// install by using spawn
 var npmInstall = require('./install-spawn');
 
 if(fs.existsSync(fullIcu.icudat)) {
