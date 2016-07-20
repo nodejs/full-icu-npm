@@ -1,7 +1,6 @@
 // Copyright (C) 2015-2016 IBM Corporation and Others. All Rights Reserved.
 
 // Install by using spawn
-// Not recommended.  Requires a dependency on npm.
 
 var path = require('path');
 var fs = require('fs');
