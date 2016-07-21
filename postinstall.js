@@ -32,9 +32,16 @@ var isglobal = process.env.npm_config_global === 'true';
 var relpath = isglobal ? cwd : path.join('node_modules',myname);
 
 function advice() {
-	if(false /* nodever >= ### */) {
-		console.log('(In the mysterious future) You’re all set! Node will automatically pick this up.');
-	} else {
+	if( fullIcu.nodeDetectIcu ) {
+		console.log('Note: If you manually copy ' + path.join(relpath,fullIcu.icudat) + ' to the directory ' +
+			path.normalize(path.join(relpath,'..','.node-icu'))
+			 + ' node will automatically detect this data.');
+		if(fullIcu.nodeDetectIcu === 'maybe') {
+			console.log(' - at least when https://github.com/nodejs/node/issues/3460 lands');
+		}
+	}
+	
+	if(fullIcu.nodeDetectIcu !== true) {
 		console.log('Node will use this ICU datafile if the environment variable NODE_ICU_DATA is set to “'+relpath+'”');
 		console.log('or with node --icu-data-dir='+relpath+' YOURAPP.js' );
 		{
@@ -42,12 +49,12 @@ function advice() {
 			console.log(" For package.json:");
 			console.log(JSON.stringify(asJson));
 		}
-		console.log("");
-		console.log("By the way, if you have full data, running this in node:");
-		// 9E8 is 10 days into January, so TimeZone independent
-		console.log("> new Intl.DateTimeFormat('es',{month:'long'}).format(new Date(9E8));"); 
-		console.log("... will show “enero”. If it shows “January” you don't have full data.");
 	}
+	console.log("");
+	console.log("By the way, if you have full data, running this in node:");
+	// 9E8 is 10 days into January, so TimeZone independent
+	console.log("> new Intl.DateTimeFormat('es',{month:'long'}).format(new Date(9E8));"); 
+	console.log("... will show “enero”. If it shows “January” you don't have full data.");
 }
 
 // install by using spawn
