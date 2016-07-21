@@ -22,6 +22,14 @@ if((node_maj == 0) && (node_min < 12)) {
 	module.exports.noi18n = true;
 } else {
 	
+	if( node_maj >= 7 ) { 
+		if( nodever === '7.0.0-pre' ) { 
+		module.exports.nodeDetectIcu = 'maybe'; 
+		} else { 
+		module.exports.nodeDetectIcu = true; 
+		} 
+	}
+
 	if(!process.config.variables.icu_small) {
 		module.exports.icu_small = false;
 		// not going to work..
