@@ -1,9 +1,11 @@
-// Copyright (C) 2015 IBM Corporation and Others. All Rights Reserved.
+// Copyright (C) 2015,2016 IBM Corporation and Others. All Rights Reserved.
 
 //var process = require('process');
 //console.dir(process.env);
 
 var fs = require('fs');
+var path = require('path');
+
 
 if(!process || !process.versions || !process.versions.node) {
 	throw Error('Sorry- don’t know what version of Node you are on.');
@@ -15,13 +17,20 @@ var nodesplit = nodever.split('.');
 
 var node_maj = module.exports.node_maj = nodesplit[0];
 var node_min = module.exports.node_min = nodesplit[1];
+var node_patch = module.exports.node_patch = nodesplit[2];
 
 if((node_maj == 0) && (node_min < 12)) {
 	module.exports.oldNode = true;
 } else if(process.config.variables.v8_enable_i18n_support === 0) {
 	module.exports.noi18n = true;
 } else {
-	
+	if( node_maj >= 7 ) {
+		if( nodever === '7.0.0-pre' ) {
+			module.exports.nodeDetectIcu = 'maybe';
+		} else {
+			module.exports.nodeDetectIcu = true;
+		}
+	}
 	if(!process.config.variables.icu_small) {
 		module.exports.icu_small = false;
 		// not going to work..
@@ -67,12 +76,24 @@ if((node_maj == 0) && (node_min < 12)) {
 	
 	var haveDat = module.exports.haveDat = function haveDat(d) {
 		if(!d) d = icudat;
-		return fs.existsSync(d);
+		return fs.existsSync(datShortPath(d));
+	}
+	module.exports.NODE_ICU = '.node-icu';
+	module.exports.nodeIcuFull = function nodeIcuFull() {
+		return fs.realpathSync(datDir());
+	}
+
+	var datDir = module.exports.datDir = function datDir() {
+		return path.join('..',module.exports.NODE_ICU);
+	}
+	var datShortPath = module.exports.datShortPath = function datShortPath(d) {
+		if(!d) d = icudat;
+		return path.join(datDir(), d);
 	}
 	
 	var datPath = module.exports.datPath = function datPath(d) {
 		if(!d) d = icudat;
-		if(haveDat(d)) return fs.realpathSync(d);
-		throw Error('Does not exist: ' + fs.realpathSync(d));
+		if(haveDat(d)) return fs.realpathSync(datShortPath(d));
+		throw Error('Does not exist: ' + datShortPath(d));
 	}
 }

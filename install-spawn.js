@@ -34,27 +34,34 @@ module.exports = function npmInstallNpm(fullIcu, advice) {
 	} else if(spawned.status !== 0) {
 		throw(Error(cmdPath + ' ' + args.join(' ') + ' --> status ' + spawned.status));
 	} else {
-		var datPath;
+		var dirPath;  // path to dir containing icu4c-data
+		var datPath;  // path to icu4c-data/icudt*.dat
 		if(isglobal) {
-			datPath = path.join('..','icu4c-data',icudat);
+			dirPath = path.join('..','icu4c-data');
 		} else {
-			datPath = path.join('node_modules','icu4c-data',icudat);
+			dirPath = path.join('node_modules','icu4c-data');
 		}
-		if(fs.existsSync(icudat)) {
-			console.log(' √ ' + icudat + " (existing link?)");
-		} else if(!fs.existsSync(datPath)) {
+		if(!fs.existsSync(fullIcu.datDir())) {
+			console.log(' mkdir ' + fullIcu.datDir());
+			fs.mkdirSync(fullIcu.datDir());
+		}
+		datPath = path.join(dirPath, icudat);
+		var datShortPath = fullIcu.datShortPath();
+		if(fs.existsSync()) {
+			console.log(' √ ' + fullIcu.datShortPath() + " (existing link?)");
+		} else if(!fs.existsSync(datPath)) { // source location
 			console.log(' • ' + ' (no ' + icudat + ' at ‘' + datPath+'’)');
 		} else {
 			try {
-                fs.linkSync(datPath, icudat);
-                console.log(' √ ' + icudat + " (link)");
+                fs.linkSync(datPath, datShortPath);
+                console.log(' √ ' + datShortPath + " (link)");
 			} catch(e) {
-				fs.symlinkSync(datPath, icudat);
-				console.log(' √ ' + icudat + " (symlink)");
+				fs.symlinkSync(datPath, datShortPath);
+				console.log(' √ ' + datShortPath + " (symlink)");
 			}
 		}
 		if(!fullIcu.haveDat()) {
-			throw Error('Somehow failed to install ' + icudat);
+			throw Error('Somehow failed to install ' + datShortPath);
 		} else {
 			advice();
 		}

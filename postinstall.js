@@ -23,17 +23,17 @@ if (fullIcu.oldNode) {
 // This is kind of a sanity check that the ICU version is correct.
 // ICU 54 was what Node v0.12 started with.
     throw Error('Don’t know how to work with ICU version ' + fullIcu.icumaj + ', sorry.');
-} 
+}
 
 var cwd = fs.realpathSync('.');
 
 var isglobal = process.env.npm_config_global === 'true';
 
-var relpath = isglobal ? cwd : path.join('node_modules',myname);
+var relpath = isglobal ? path.join(cwd,'..',fullIcu.NODE_ICU) : path.join('node_modules',fullIcu.NODE_ICU);
 
 function advice() {
-	if(false /* nodever >= ### */) {
-		console.log('(In the mysterious future) You’re all set! Node will automatically pick this up.');
+	if(fullIcu.nodeDetectIcu) {
+		console.log('You’re all set! Node will automatically pick this up.');
 	} else {
 		console.log('Node will use this ICU datafile if the environment variable NODE_ICU_DATA is set to “'+relpath+'”');
 		console.log('or with node --icu-data-dir='+relpath+' YOURAPP.js' );
@@ -42,22 +42,22 @@ function advice() {
 			console.log(" For package.json:");
 			console.log(JSON.stringify(asJson));
 		}
-		console.log("");
-		console.log("By the way, if you have full data, running this in node:");
-		// 9E8 is 10 days into January, so TimeZone independent
-		console.log("> new Intl.DateTimeFormat('es',{month:'long'}).format(new Date(9E8));"); 
-		console.log("... will show “enero”. If it shows “January” you don't have full data.");
 	}
+	console.log("");
+	console.log("By the way, if you have full data, running this in node:");
+	// 9E8 is 10 days into January, so TimeZone independent
+	console.log("> new Intl.DateTimeFormat('es',{month:'long'}).format(new Date(9E8));"); 
+	console.log("... will show “enero”. If it shows “January” you don't have full data.");
 }
 
 // install by using spawn
 var npmInstall = require('./install-spawn');
 
-if(fs.existsSync(fullIcu.icudat)) {
+if(fs.existsSync(fullIcu.datShortPath())) {
 	console.log('√ ' + fullIcu.icudat + ' Already there (for Node ' + fullIcu.nodever + ' and small-icu ' + fullIcu.icuver + ')');
 	advice();
 } else {
-	console.log('npm install ' + fullIcu.icupkg + ' (Node ' + fullIcu.nodever + ' and small-icu ' + fullIcu.icuver + ') -> ' + fullIcu.icudat);
+	console.log('npm install ' + fullIcu.icupkg + ' (Node ' + fullIcu.nodever + ' and small-icu ' + fullIcu.icuver + ') -> ' + fullIcu.datShortPath());
 	npmInstall(fullIcu, advice);
 }
 console.log('News: Please see https://github.com/icu-project/full-icu-npm/issues/6');
