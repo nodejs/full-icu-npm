@@ -8,7 +8,7 @@ to use:
 or for global install:
 
 	npm install -g full-icu
-	
+
 Instructions will be printed out on how to activate this data for your version of node.
 
 The work gets done in a `postinstall` script which copies the `icudt*.dat` file
@@ -26,7 +26,7 @@ API
 
 * `node_min` - the minor part of the node version (ex `2`)
 
-* `icu_small` - if truthy, means that node was built with 
+* `icu_small` - if truthy, means that node was built with
 small-icu (English only). If falsy, means that the `full-icu`
 package is not relevant.
 
@@ -64,5 +64,5 @@ This software is part of ICU, and as such is:
 
 Copyright (C) 2015 IBM Corporation and Others. All Rights Reserved.
 
-A copy of the ICU license is in [LICENSE.html](LICENSE.html)
-or is available at https://ssl.icu-project.org/repos/icu/icu/trunk/license.html
+A copy of the ICU license is in [LICENSE](LICENSE)
+or is available at http://bugs.icu-project.org/trac/browser/icu/tags/latest/LICENSE
