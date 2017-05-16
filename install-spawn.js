@@ -18,16 +18,22 @@ module.exports = function npmInstallNpm(fullIcu, advice) {
 	
 	var args;
 	
-	if(npmPath) {
+
+	if ( /yarn\.js$/.test(npmPath) ) {
+		console.log('Looks like you are using yarn…');
+		installVerb = 'add';
+		args = [ npmPath, 'add', icupkg, '--no-lockfile', '--ignore-scripts' ];
+	} else if(npmPath) {
 		args = [ npmPath, 'install', icupkg ];
 	} else {
 		// attempt to launch npm.
+		// do not try yarn here
 		console.log('(Hmm… doesn’t look like NPM called us. Let’s try calling NPM.)');
 		cmdPath = 'npm';
 		args = [ 'install', icupkg ];
 	}
 	
-	//console.log('#', cmdPath, args.join(' '));
+	console.log('full-icu$', cmdPath, args.join(' '));
 	var spawned = child_process.spawnSync(cmdPath, args, { stdio: 'inherit' });
 	if(spawned.error) {
 		throw(spawned.error);

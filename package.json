@@ -17,5 +17,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/icu-project/full-icu-npm.git"
+  },
+  "dependencies": {
+    "icu4c-data": "58l"
   }
 }
