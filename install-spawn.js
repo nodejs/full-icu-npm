@@ -11,15 +11,15 @@ var isglobal = process.env.npm_config_global === 'true';
 module.exports = function npmInstallNpm(fullIcu, advice) {
 	var icupkg = fullIcu.icupkg;
 	var icudat = fullIcu.icudat;
-	
+
 	var cmdPath = nodePath = process.env.npm_node_execpath;
 
 	var npmPath = process.env.npm_execpath;
-	
-	var args;
-	
 
-	if ( /yarn\.js$/.test(npmPath) ) {
+	var args;
+
+
+	if ( /yarn(\.js)?$/.test(npmPath) ) {
 		console.log('Looks like you are using yarn…');
 		installVerb = 'add';
 		args = [ npmPath, 'add', icupkg, '--no-lockfile', '--ignore-scripts' ];
@@ -32,7 +32,7 @@ module.exports = function npmInstallNpm(fullIcu, advice) {
 		cmdPath = 'npm';
 		args = [ 'install', icupkg ];
 	}
-	
+
 	console.log('full-icu$', cmdPath, args.join(' '));
 	var spawned = child_process.spawnSync(cmdPath, args, { stdio: 'inherit' });
 	if(spawned.error) {
