@@ -22,6 +22,9 @@ if((node_maj == 0) && (node_min < 12)) {
 	module.exports.noi18n = true;
 } else {
 	
+	/*
+	Commented until https://github.com/nodejs/node/issues/3460 is fixed.
+	
 	if( node_maj >= 7 ) { 
 		if( nodever === '7.0.0-pre' ) { 
 		module.exports.nodeDetectIcu = 'maybe'; 
@@ -29,6 +32,7 @@ if((node_maj == 0) && (node_min < 12)) {
 		module.exports.nodeDetectIcu = true; 
 		} 
 	}
+	*/
 
 	if(!process.config.variables.icu_small) {
 		module.exports.icu_small = false;
