@@ -4,6 +4,7 @@
 //console.dir(process.env);
 
 var fs = require('fs');
+var path = require('path');
 
 if(!process || !process.versions || !process.versions.node) {
 	throw Error('Sorry- don’t know what version of Node you are on.');
@@ -78,12 +79,12 @@ if((node_maj == 0) && (node_min < 12)) {
 	var icudat = module.exports.icudat = "icudt"+icumaj+icuend+".dat";
 	
 	var haveDat = module.exports.haveDat = function haveDat(d) {
-		if(!d) d = icudat;
+		if(!d) d = path.resolve(__dirname, icudat);
 		return fs.existsSync(d);
 	}
 	
 	var datPath = module.exports.datPath = function datPath(d) {
-		if(!d) d = icudat;
+		if(!d) d = path.resolve(__dirname, icudat);
 		if(haveDat(d)) return fs.realpathSync(d);
 		throw Error('Does not exist: ' + fs.realpathSync(d));
 	}
