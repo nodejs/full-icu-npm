@@ -7,17 +7,22 @@ var fullIcu = require('./full-icu');
 
 var myname = process.env.npm_package_name || 'full-icu';
 
+function exit(reason) {
+	console.log(reason);
+	process.exit(0);
+}
+
 if (fullIcu.oldNode) {
-	console.log('Not sure how to handle node < 0.12. Exitting.');
+	exit('Not sure how to handle node < 0.12. Exitting.');
 } else if (fullIcu.noi18n) {
-	console.log('Note: Your node was not compiled with i18n support. Nothing to do, Exitting.');
+	exit('Note: Your node was not compiled with i18n support. Nothing to do, Exitting.');
 } else if (fullIcu.icu_system) {
-	console.log('Note: Your node was compiled to link against an ' +
+	exit('Note: Your node was compiled to link against an ' +
 	'externally-provided ICU, so the locale data is not customizable ' +
 	'through this script. Exitting.');
 } else if (!fullIcu.icu_small) {
 	// maybe already full icu, or some as-yet-unforseen case.
-	console.log('Note: Your node was not compiled with the ‘small-icu’ case,' +
+	exit('Note: Your node was not compiled with the ‘small-icu’ case,' +
 	' so the ICU data is not customizable through this script. Exitting.');
 } else if( fullIcu.icumaj < 54 ) {
 // This is kind of a sanity check that the ICU version is correct.
