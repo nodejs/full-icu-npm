@@ -19,7 +19,7 @@ module.exports = function npmInstallNpm(fullIcu, advice) {
 	var args;
 
 
-	if ( /yarn(\.js)?$/.test(npmPath) ) {
+	if ( /yarn((.*cli)?\.js)?$/.test(npmPath) ) {
 		console.log('Looks like you are using yarn…');
 		installVerb = 'add';
 		args = [ npmPath, 'add', icupkg, '--no-lockfile', '--ignore-scripts' ];
