@@ -34,7 +34,7 @@ module.exports = function npmInstallNpm(fullIcu, advice) {
 	}
 
 	console.log('full-icu$', cmdPath, args.join(' '));
-	var spawned = child_process.spawnSync(cmdPath, args, { stdio: 'inherit' });
+	var spawned = child_process.spawnSync(cmdPath, args, { stdio: 'inherit', cwd: process.env.INIT_CWD });
 	if(spawned.error) {
 		throw(spawned.error);
 	} else if(spawned.status !== 0) {
