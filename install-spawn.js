@@ -7,6 +7,8 @@ var fs = require('fs');
 var child_process = require('child_process');
 
 var isglobal = process.env.npm_config_global === 'true';
+var npmrc = '.npmrc';
+var npmrcPath = path.resolve(process.env.INIT_CWD, npmrc);
 
 module.exports = function npmInstallNpm(fullIcu, advice) {
 	var icupkg = fullIcu.icupkg;
@@ -33,8 +35,24 @@ module.exports = function npmInstallNpm(fullIcu, advice) {
 		args = [ 'install', icupkg ];
 	}
 
+	if(fs.existsSync(npmrcPath)) {
+		try {
+			fs.linkSync(npmrcPath, npmrc);
+		} catch(e) {
+			fs.symlinkSync(npmrcPath, npmrc);
+		}
+	}
+
 	console.log('full-icu$', cmdPath, args.join(' '));
-	var spawned = child_process.spawnSync(cmdPath, args, { stdio: 'inherit', cwd: process.env.INIT_CWD });
+	var spawned = child_process.spawnSync(cmdPath, args, { stdio: 'inherit' });
+
+	if(fs.existsSync(npmrc)) {
+		try {
+			fs.unlinkSync(npmrc);
+		} catch(e) {
+		}
+	}
+
 	if(spawned.error) {
 		throw(spawned.error);
 	} else if(spawned.status !== 0) {
