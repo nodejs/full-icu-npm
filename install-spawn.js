@@ -34,7 +34,9 @@ module.exports = function npmInstallNpm(fullIcu, advice) {
 	}
 
 	console.log('full-icu$', cmdPath, args.join(' '));
-	var spawned = child_process.spawnSync(cmdPath, args, { stdio: 'inherit' });
+	// Must set "cwd" so that pre-project config .npmrc is found
+	// See https://docs.npmjs.com/files/npmrc
+	var spawned = child_process.spawnSync(cmdPath, args, { stdio: 'inherit', cwd: process.cwd() });
 	if(spawned.error) {
 		throw(spawned.error);
 	} else if(spawned.status !== 0) {
