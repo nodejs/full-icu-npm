@@ -8,6 +8,9 @@ var child_process = require('child_process');
 
 var isglobal = process.env.npm_config_global === 'true';
 
+// uses semver regex from https://semver.org/
+const YARN_REGEX = /yarn(-(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)?((.*cli)?\.js)?$/;
+
 module.exports = function npmInstallNpm(fullIcu, advice) {
 	var icupkg = fullIcu.icupkg;
 	var icudat = fullIcu.icudat;
@@ -19,7 +22,7 @@ module.exports = function npmInstallNpm(fullIcu, advice) {
 	var args;
 
 
-	if ( /yarn((.*cli)?\.js)?$/.test(npmPath) ) {
+	if (YARN_REGEX.test(npmPath) ) {
 		console.log('Looks like you are using yarn…');
 		installVerb = 'add';
 		args = [ npmPath, 'add', icupkg, '--no-lockfile', '--ignore-scripts' ];
