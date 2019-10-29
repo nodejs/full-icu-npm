@@ -7,6 +7,8 @@ var fs = require('fs');
 var child_process = require('child_process');
 
 var isglobal = process.env.npm_config_global === 'true';
+var npmrc = '.npmrc';
+var npmrcPath = path.resolve(process.env.INIT_CWD, npmrc);
 
 // uses semver regex from https://semver.org/
 const YARN_REGEX = /yarn(-(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)?((.*cli)?\.js)?$/;
@@ -36,8 +38,24 @@ module.exports = function npmInstallNpm(fullIcu, advice) {
 		args = [ 'install', icupkg ];
 	}
 
+	if(fs.existsSync(npmrcPath)) {
+		try {
+			fs.linkSync(npmrcPath, npmrc);
+		} catch(e) {
+			fs.symlinkSync(npmrcPath, npmrc);
+		}
+	}
+
 	console.log('full-icu$', cmdPath, args.join(' '));
 	var spawned = child_process.spawnSync(cmdPath, args, { stdio: 'inherit' });
+
+	if(fs.existsSync(npmrc)) {
+		try {
+			fs.unlinkSync(npmrc);
+		} catch(e) {
+		}
+	}
+
 	if(spawned.error) {
 		throw(spawned.error);
 	} else if(spawned.status !== 0) {
