@@ -61,8 +61,16 @@ function advice() {
 	console.log("... will show “enero”. If it shows “January” you don't have full data.");
 }
 
-// install by using spawn
-var npmInstall = require('./install-spawn');
+// Choose install method
+var npmInstall;
+
+// GitHub has v50+ as releases
+// Experimentally, pull from GitHub for little endian
+if ( fullIcu.icuend === 'l' && !process.env.FULL_ICU_PREFER_NPM ) {
+	npmInstall = require('./install-gh');
+} else {
+	npmInstall = require('./install-spawn');
+}
 
 if(fs.existsSync(fullIcu.icudat)) {
 	console.log('√ ' + fullIcu.icudat + ' Already there (for Node ' + fullIcu.nodever + ' and small-icu ' + fullIcu.icuver + ')');
