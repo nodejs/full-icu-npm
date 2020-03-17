@@ -2,56 +2,12 @@
 
 // Install by using spawn
 
-var path = require('path');
 var fs = require('fs');
-const os = require('os');
 const {URL} = require('url');
 const process = require('process');
+const myFetch = require('./myFetch');
 
 var isglobal = process.env.npm_config_global === 'true';
-
-function getFetcher(u) {
-    if(u.protocol === 'https:') return require('https');
-    if(u.protocol === 'http:') return require('http');
-    return null;
-}
-function myFetch(fullUrl) {
-    return new Promise((resolve, reject) => {
-        const fetcher = getFetcher(fullUrl);
-        console.log('Fetch:', fullUrl.toString());
-        if(!fetcher) {
-            return reject(Error(`Unknown URL protocol ${u.protocol} in ${u.toString()}`));
-        }
-
-        fetcher.get(fullUrl, res => {
-            length = res.headers['content-length'];
-            if(res.statusCode === 302 && res.headers.location) {
-                return resolve(myFetch(new URL(res.headers.location)));
-            } else if(res.statusCode !== 200) {
-                return reject(Error(`Bad status code ${res.statusCode}`));
-            }
-            const tmpd = fs.mkdtempSync(os.tmpdir());
-            const tmpf = path.join(tmpd, 'icu-download.zip');
-            let gotSoFar = 0;
-            console.dir(tmpd);
-
-            res.on('data', data => {
-                gotSoFar += data.length;
-                fs.appendFileSync(tmpf, data);
-                // console.dir(res.headers);
-                console.log(`${gotSoFar}/${length}`);
-                // console.log(`chunk: ${data.length}`);
-            });
-            res.on('end', () => resolve([tmpf, tmpd]));
-            res.on('error', error => {
-                fs.unlinkSync(tmpf);
-                fs.rmdirSync(tmpd);
-                console.error(error);
-                return reject(error);
-            });
-        });
-    });
-}
 
 module.exports = async function installFromGithub(fullIcu, advice) {
 	var icupkg = fullIcu.icupkg;
