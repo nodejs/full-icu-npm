@@ -9,6 +9,11 @@ function getFetcher(u) {
     if(u.protocol === 'http:') return require('http');
     return null;
 }
+
+/**
+ * @param {URL} fullUrl url to fetch
+ * @returns {Promse<String[]>} filename, tmpdir
+ */
 function myFetch(fullUrl) {
     return new Promise((resolve, reject) => {
         const fetcher = getFetcher(fullUrl);

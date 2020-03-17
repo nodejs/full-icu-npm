@@ -6,6 +6,7 @@ var fs = require('fs');
 const {URL} = require('url');
 const process = require('process');
 const myFetch = require('./myFetch');
+const yauzl = require('yauzl');
 
 var isglobal = process.env.npm_config_global === 'true';
 
@@ -27,11 +28,13 @@ module.exports = async function installFromGithub(fullIcu, advice) {
     const file = `icu4c-${versionsAsUnderscore}-src.zip`;
     const fullUrl = new URL(`./download/${tag}/${file}`, baseUrl);
     console.log(fullUrl.toString());
-    const data = await myFetch(fullUrl);
+    const [srcZip, tmpd] = await myFetch(fullUrl);
 
+    console.log(srcZip, tmpd);
+    // now, unpack it
+    
 
-
-	if(spawned.error) {
+    	)	if(spawned.error) {
 		throw(spawned.error);
 	} else if(spawned.status !== 0) {
 		throw(Error(cmdPath + ' ' + args.join(' ') + ' --> status ' + spawned.status));
