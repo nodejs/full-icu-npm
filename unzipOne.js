@@ -8,7 +8,7 @@ const {basename} = require('path');
  * @param {String} dstDir destination dir
  * @returns {Promise<String>} to output filename if successful, or falsy if the file was not found.
  */
-function unzipOne(srcZip, fn, dstDir) {
+function unzipOne(srcZip, fn /*, dstDir*/) {
     return new Promise((resolve, reject) => {
             yauzl.open(srcZip, {lazyEntries: true},
             (err, zipfile) => {

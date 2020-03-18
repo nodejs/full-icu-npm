@@ -19,11 +19,11 @@ function myFetch(fullUrl) {
         const fetcher = getFetcher(fullUrl);
         console.log('Fetch:', fullUrl.toString());
         if(!fetcher) {
-            return reject(Error(`Unknown URL protocol ${u.protocol} in ${u.toString()}`));
+            return reject(Error(`Unknown URL protocol ${fullUrl.protocol} in ${fullUrl.toString()}`));
         }
 
         fetcher.get(fullUrl, res => {
-            length = res.headers['content-length'];
+            const length = res.headers['content-length'];
             if(res.statusCode === 302 && res.headers.location) {
                 return resolve(myFetch(new URL(res.headers.location)));
             } else if(res.statusCode !== 200) {

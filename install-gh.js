@@ -2,23 +2,23 @@
 
 // Install by using spawn
 
-var fs = require('fs');
+// var fs = require('fs');
 const {URL} = require('url');
 const process = require('process');
 const myFetch = require('./myFetch');
-const yauzl = require('yauzl');
+// const yauzl = require('yauzl');
 
-var isglobal = process.env.npm_config_global === 'true';
+// var isglobal = process.env.npm_config_global === 'true';
 
 module.exports = async function installFromGithub(fullIcu, advice) {
 	var icupkg = fullIcu.icupkg;
 	var icudat = fullIcu.icudat;
 
-	var cmdPath = nodePath = process.env.npm_node_execpath;
+	// var cmdPath = nodePath = process.env.npm_node_execpath;
 
-	var npmPath = process.env.npm_execpath;
+	// var npmPath = process.env.npm_execpath;
 
-	var args;
+	// var args;
     // https://github.com/unicode-org/icu/releases/download/release-51-3/icu4c-51_3-src.zip
     const _baseUrl = process.env.FULL_ICU_BASEURL || 'https://github.com/unicode-org/icu/releases/';
     const baseUrl = new URL(_baseUrl);
@@ -33,8 +33,8 @@ module.exports = async function installFromGithub(fullIcu, advice) {
     console.log(srcZip, tmpd);
     // now, unpack it
     
-
-    	)	if(spawned.error) {
+/*
+    	if(spawned.error) {
 		throw(spawned.error);
 	} else if(spawned.status !== 0) {
 		throw(Error(cmdPath + ' ' + args.join(' ') + ' --> status ' + spawned.status));
@@ -58,5 +58,5 @@ module.exports = async function installFromGithub(fullIcu, advice) {
 		} else {
 			advice();
 		}
-	}
+	}*/
 };
