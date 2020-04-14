@@ -17,5 +17,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/icu-project/full-icu-npm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unicode-org/full-icu-npm/issues"
   }
 }
