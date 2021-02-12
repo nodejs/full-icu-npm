@@ -9,6 +9,7 @@
     "icu4c"
   ],
   "bin": {
+    "full-icu": "./node-full-icu.js",
     "node-full-icu-path": "./node-icu-data.js"
   },
   "main": "full-icu.js",
