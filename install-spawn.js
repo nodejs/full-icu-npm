@@ -11,7 +11,7 @@ var npmrc = '.npmrc';
 var npmrcPath = path.resolve(process.env.INIT_CWD, npmrc);
 
 // uses semver regex from https://semver.org/
-const YARN_REGEX = /yarn(-(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)?((.*cli)?\.js)?$/;
+const YARN_REGEX = /yarn(-(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)?((.*cli)?\.c?js)?$/;
 
 module.exports = function npmInstallNpm(fullIcu, advice) {
 	var icupkg = fullIcu.icupkg;
