@@ -1,6 +1,6 @@
 {
   "name": "full-icu",
-  "version": "1.3.3",
+  "version": "1.3.4-0",
   "description": "install 'full-icu' data for your current node",
   "scripts": {
     "postinstall": "node postinstall.js"
