@@ -52,17 +52,15 @@ BIN
 
 `node-full-icu-path` will print the full `icudt*.dat` path, if available.
 
-MIRROR
+LICENSE
 ===
-This is a mirror of source  currently  in
-http://source.icu-project.org/repos/icu/tools/branches/srl/npm11617/release/c/icu4c-data-npm/full-icu
+
+- Usage of data and software is governed by the [Unicode Terms of Use](http://www.unicode.org/copyright.html)
+a copy of which is included as [LICENSE](./LICENSE)
 
 COPYRIGHT
 ===
 
-This software is part of ICU, and as such is:
-
-Copyright (C) 2015 IBM Corporation and Others. All Rights Reserved.
-
-A copy of the ICU license is in [LICENSE](LICENSE)
-or is available at http://bugs.icu-project.org/trac/browser/icu/tags/latest/LICENSE
+Copyright &copy; 1991-2021 Unicode, Inc.
+All rights reserved.
+[Terms of use](http://www.unicode.org/copyright.html)
