@@ -12,8 +12,8 @@
     "node-full-icu-path": "./node-icu-data.js"
   },
   "main": "full-icu.js",
-  "author": "Copyright © 1991-2016 Unicode, Inc. All rights reserved.",
-  "license": "MIT",
+  "author": "Steven R. Loomis <srl295@gmail.com>",
+  "license": "Unicode-DFS-2016",
   "repository": {
     "type": "git",
     "url": "https://github.com/icu-project/full-icu-npm.git"
