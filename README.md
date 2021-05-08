@@ -1,37 +1,36 @@
+# full-icu-npm
+
 Install full ICU data
-###
 
-to use:
+### To use
 
-	npm install full-icu
+`npm install full-icu`
 
-or for global install:
+### To install globally
 
-	npm install -g full-icu
+`npm install -g full-icu`
+
+### After Installation
 
 Instructions will be printed out on how to activate this data for your version of node.
 
-The work gets done in a `postinstall` script which copies the `icudt*.dat` file
-up to this module's level.
+This work gets done in a `postinstall` script which copies the `icudt*.dat` file up to this module's level.
 
-
-API
-===
+## API
 
 `require('full-icu')` returns a few properties:
 
-* `nodever` - the full Node version (ex: `4.2.0`)
+* `nodever` - the full Node version (ex: `14.2.0`)
 
-* `node_maj` - the major part of the node version (ex: `4`)
+* `node_maj` - the major part of the node version (ex: `14`)
 
 * `node_min` - the minor part of the node version (ex `2`)
 
 * `icu_small` - if truthy, means that node was built with
-small-icu (English only). If falsy, means that the `full-icu`
+**small-icu** (English only). If falsy, means that the `full-icu`
 package is not relevant.
 
-* `icuver` - full ICU version, if available, such as 55.1. Sometimes only the major
-version is available.
+* `icuver` - the full ICU version, if available, such as 55.1. Sometimes only the major version is available.
 
 * `icumaj` - ICU major ver, such as `55`. May be === `icuver`.
 
@@ -45,22 +44,22 @@ version is available.
 
 * `noi18n` - if truthy, no ICU / Intl build was enabled for your node version. Sorry.
 
-* `oldNode` - Node is older (`<0.12`) than this package can really think about.
+* `oldNode` - The node version is older than this package can really think about.
 
-BIN
-===
+## BIN
 
 `node-full-icu-path` will print the full `icudt*.dat` path, if available.
 
-LICENSE
-===
+## CONTRIBUTING
 
-- Usage of data and software is governed by the [Unicode Terms of Use](http://www.unicode.org/copyright.html)
-a copy of which is included as [LICENSE](./LICENSE)
+Please see our [`CONTRIBUTING`](./CONTRIBUTING.md) guide if you'd like to help with this initiative!
 
-COPYRIGHT
-===
+## LICENSE
 
-Copyright &copy; 1991-2021 Unicode, Inc.
-All rights reserved.
-[Terms of use](http://www.unicode.org/copyright.html)
+This repository is subject to the terms under the [Node.js license](https://github.com/nodejs/node/blob/master/LICENSE). Some usage of this data is governed by the [Unicode Terms of Use](http://www.unicode.org/copyright.html), which is included in the [unicode-license.txt](./unicode-license.txt)
+
+## COPYRIGHT
+
+Copyright &copy; 1991-2021 Unicode, Inc. and Node.js contributors. All rights reserved.
+
+[Unicode terms of use](http://www.unicode.org/copyright.html)
