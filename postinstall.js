@@ -60,8 +60,29 @@ function advice () {
   console.log("... will show “enero”. If it shows “January” you don't have full data.")
 }
 
-// install by using spawn
-const npmInstall = require('./install-spawn')
+// Choose install method
+let npmInstall
+
+// GitHub has v50+ as releases
+// Experimentally, pull from GitHub for little endian
+if (!process.env.FULL_ICU_PREFER_NPM) {
+  if (fullIcu.icumaj >= 67) {
+    // Pull from bin data zip, first arrived in ICU v67
+    // https://unicode-org.atlassian.net/browse/ICU-20600
+    npmInstall = require('./install-gh-data')
+  } else {
+    if (fullIcu.icuend === 'l') {
+      // Little Endian can pull from icu4c-src.zip which contains a prebuilt data file
+      npmInstall = require('./install-gh')
+    } else {
+      // Fall back to npm
+      console.log(`ICU data bin zip not available until ICU v${fullIcu.icumaj} for endianness ${fullIcu.icuend}: Falling back to npm`)
+      npmInstall = require('./install-spawn')
+    }
+  }
+} else {
+  npmInstall = require('./install-spawn')
+}
 
 if (fs.existsSync(fullIcu.icudat)) {
   console.log('√ ' + fullIcu.icudat + ' Already there (for Node ' + fullIcu.nodever + ' and small-icu ' + fullIcu.icuver + ')')
