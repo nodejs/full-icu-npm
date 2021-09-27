@@ -3,6 +3,7 @@
 const os = require('os')
 const path = require('path')
 const fs = require('fs')
+const { sep } = require('path')
 
 function getFetcher (u) {
   if (u.protocol === 'https:') return require('https')
@@ -29,7 +30,7 @@ function myFetch (fullUrl) {
       } else if (res.statusCode !== 200) {
         return reject(Error(`Bad status code ${res.statusCode}`))
       }
-      const tmpd = fs.mkdtempSync(os.tmpdir())
+      const tmpd = fs.mkdtempSync(`${os.tmpdir()}${sep}`)
       const tmpf = path.join(tmpd, 'icu-download.zip')
       let gotSoFar = 0
       console.dir(tmpd)
