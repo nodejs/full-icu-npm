@@ -8,6 +8,9 @@ const spawnSync = require('child_process').spawnSync
 
 const isglobal = process.env.npm_config_global === 'true'
 const npmrc = '.npmrc'
+if (!process.env.INIT_CWD) {
+  throw Error('INIT_CWD was not set- does not seem like we were launched from npm')
+}
 const npmrcPath = path.resolve(process.env.INIT_CWD, npmrc)
 
 // uses semver regex from https://semver.org/
