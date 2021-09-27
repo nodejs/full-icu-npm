@@ -4,7 +4,20 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: Test with 12-slim
+    strategy:
+      fail-fast: false
+      matrix:
+        container:
+        # Official Node.js images.
+        - node:12
+        - node:14
+        - node:16
+        # RHEL Node.js builds are icu_small without installing the
+        # optional nodejs-full-i18n rpm.
+        - registry.access.redhat.com/ubi8/nodejs-12
+        - registry.access.redhat.com/ubi8/nodejs-14
+        # - registry.access.redhat.com/ubi8/nodejs-16
+        - node:12-slim
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -13,6 +26,6 @@ jobs:
         repository: nodejs/full-icu-test
         path: full-icu-test
     - name: Install full-icu
-      run: docker run --rm  -v $(pwd):/usr/src/app -w /usr/src/app  node:12-slim npm i --no-package-lock --unsafe-perm
+      run: docker run --rm  -v $(pwd):/usr/src/app -w /usr/src/app  ${{ matrix.container }} npm i --no-package-lock --unsafe-perm
     - name: Test full-icu
-      run: docker run --rm  -v $(pwd):/usr/src/app -w /usr/src/app  node:12-slim node --icu-data-dir=. ./full-icu-test/test.js
+      run: docker run --rm  -v $(pwd):/usr/src/app -w /usr/src/app  ${{ matrix.container }} --icu-data-dir=. ./full-icu-test/test.js
