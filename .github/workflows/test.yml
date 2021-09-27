@@ -1,0 +1,18 @@
+name: Integration Test
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Test with 12-slim
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      with:
+        repository: nodejs/full-icu-test
+        path: full-icu-test
+    - name: Install full-icu
+      run: docker run --rm  -v $(pwd):/usr/src/app -w /usr/src/app  node:12-slim npm i --no-package-lock --unsafe-perm
+    - name: Test full-icu
+      run: docker run --rm  -v $(pwd):/usr/src/app -w /usr/src/app  node:12-slim node --icu-data-dir=. ./full-icu-test/test.js
