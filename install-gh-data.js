@@ -9,21 +9,14 @@ const process = require('process')
 const myFetch = require('./myFetch')
 const yauzl = require('yauzl')
 
-// var isglobal = process.env.npm_config_global === 'true';
-
 module.exports = async function installFromGithub (fullIcu, advice) {
-//   const icupkg = fullIcu.icupkg
   const { icudat, icuend } = fullIcu
   if (fs.existsSync(icudat)) {
     console.log(` √ ${icudat} (exists)`)
     return
   }
 
-  // var cmdPath = nodePath = process.env.npm_node_execpath;
-
-  // var npmPath = process.env.npm_execpath;
-
-  // var args;
+  // Example URL:
   // https://github.com/unicode-org/icu/releases/download/release-51-3/icu4c-51_3-src.zip
   const _baseUrl = process.env.FULL_ICU_BASEURL || 'https://github.com/unicode-org/icu/releases/'
   const baseUrl = new URL(_baseUrl)
@@ -39,8 +32,8 @@ module.exports = async function installFromGithub (fullIcu, advice) {
   const [srcZip, tmpd] = await myFetch(fullUrl)
 
   console.log(srcZip, tmpd)
-  // now, unpack it
 
+  // now, unpack it
   console.log(`Looking for ${icudat}`)
   return new Promise((resolve, reject) =>
     yauzl.open(srcZip, { lazyEntries: true }, (err, zipfile) => {
@@ -54,7 +47,6 @@ module.exports = async function installFromGithub (fullIcu, advice) {
           console.log('found ' + entry.fileName)
           zipfile.openReadStream(entry, (err, readStream) => {
             if (err) return reject(err)
-            // if entry.file
             readStream.on('end', () => zipfile.readEntry())
             const pipeOut = fs.createWriteStream(icudat)
             readStream.pipe(pipeOut)
@@ -62,7 +54,7 @@ module.exports = async function installFromGithub (fullIcu, advice) {
             return resolve()
           })
         } else {
-          zipfile.readEntry() // get next
+          zipfile.readEntry()
         }
       })
     }))
