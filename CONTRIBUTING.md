@@ -1,9 +1,9 @@
-# Contributing to `full-icu-npm`
+# Contributing to `full-icu`
 
-## What is `full-icu-npm`?
+## What is `full-icu`?
 International Components for Unicode (ICU) is an open-source project of mature C/C++ and Java libraries for Unicode support, software internationalization, and software globalization. ICU is widely portable to many operating systems and environments, and is an initiative of the [Unicode Consortium](https://home.unicode.org/).
 
-Node.js uses ICU to implement these features in native C/C++ code. The full ICU data set is provided in Node.js by default, and this module is how it is provisioned to node. It's resulting npm package is published [here](https://www.npmjs.com/package/full-icu). 
+Node.js uses ICU to implement these features in native C/C++ code. The full ICU data set is provided in Node.js by default, and this module is how it is provisioned to node. It's resulting npm package is published [here](https://www.npmjs.com/package/full-icu).
 
 **We are thankful for Your interest in contributing to this effort!**
 
@@ -12,7 +12,7 @@ Node.js uses ICU to implement these features in native C/C++ code. The full ICU 
 ## Code of Conduct
 Contributors to this repository must adhere to the [Node.js Code of Conduct](https://github.com/nodejs/admin/blob/HEAD/CODE_OF_CONDUCT.md).
 
-For more information on the Node.js Code of Conduct please review these [policy details](https://github.com/nodejs/node/blob/master/doc/guides/contributing/code-of-conduct.md).
+For more information on the Node.js Code of Conduct please review these [policy details](https://github.com/nodejs/node/blob/HEAD/doc/guides/contributing/code-of-conduct.md).
 
 ## Developer's Certificate of Origin 1.1
 
