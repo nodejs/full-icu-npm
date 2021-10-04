@@ -1,6 +1,6 @@
-# full-icu-npm
+# full-icu
 
-Install full ICU data from GitHub or npm
+Install full ICU data from GitHub or npm for Node.js.
 
 ### To use
 
@@ -59,7 +59,7 @@ Please see our [`CONTRIBUTING`](./CONTRIBUTING.md) guide if you'd like to help w
 
 ## LICENSE
 
-This repository is subject to the terms under the [Node.js license](https://github.com/nodejs/node/blob/master/LICENSE). Some usage of this data is governed by the [Unicode Terms of Use](http://www.unicode.org/copyright.html), which is included in the [unicode-license.txt](./unicode-license.txt)
+This repository is subject to the terms under the [Node.js license](https://github.com/nodejs/node/blob/HEAD/LICENSE). Some usage of this data is governed by the [Unicode Terms of Use](http://www.unicode.org/copyright.html), which is included in the [unicode-license.txt](./unicode-license.txt)
 
 ## COPYRIGHT
 
