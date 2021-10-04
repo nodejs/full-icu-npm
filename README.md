@@ -1,10 +1,13 @@
 # full-icu-npm
 
-Install full ICU data
+Install full ICU data from GitHub or npm
 
 ### To use
 
 `npm install full-icu`
+
+Note: Set env var `FULL_ICU_PREFER_NPM=true` to prefer using the `icu4c-data` npm module,
+otherwise the default is now to load from ICU4C’s GitHub release.
 
 ### To install globally
 

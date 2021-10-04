@@ -3,3 +3,4 @@ node_modules
 .svn
 .git
 npm-debug.log
+/test

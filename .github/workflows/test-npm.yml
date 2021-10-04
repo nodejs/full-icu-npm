@@ -1,0 +1,24 @@
+name: Integration Test npm
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        container:
+        - node:12
+        - node:12-slim
+        # Will fail on versions that aren't in icu4c-data
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      with:
+        repository: nodejs/full-icu-test
+        path: full-icu-test
+    - name: Install full-icu
+      run: docker run --rm  -v $(pwd):/usr/src/app -w /usr/src/app  ${{ matrix.container }} env FULL_ICU_PREFER_NPM=1 npm i --no-package-lock --unsafe-perm
+    - name: Test full-icu
+      run: docker run --rm -e NODE_ICU_DATA=. -v $(pwd):/usr/src/app -w /usr/src/app  ${{ matrix.container }} node ./full-icu-test/test.js

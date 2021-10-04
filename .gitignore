@@ -2,3 +2,5 @@ node_modules
 *.dat
 npm-debug.log
 /yarn.lock
+package-lock.json
+/.nyc_output
