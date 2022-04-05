@@ -1,8 +1,40 @@
 # full-icu
 
-Install full ICU data from GitHub or npm for Node.js.
+Install full ICU (Internationalization) data from GitHub or npm for Node.js.
+
+### What is this and why would I use it?
+
+Importing this package does not have any useful effect, see below.
+
+Originally, Node.js did not come with information for all of the world’s languages.
+The default build mode was “small-icu” which means English-only, saving about 50% of
+the total Node.js download footprint.
+
+Since Node.js 13, full ICU data has been the default for Node.js.
+So this module is only helpful for older Node.js versions, or custom
+builds which specify small-icu.
+
+This module does not add any internationalization capabilities to Node.js,
+but it can provide a convenient way of loading the data.
+
+Please see [“providing ICU data at runtime”](https://nodejs.org/api/intl.html#providing-icu-data-at-runtime) in the Node.js docs for more information.
+
+### Am I using `small-icu`?
+
+Let's find out:
+
+```shell
+$ node -p 'process.config.variables.icu_small'
+true
+```
+
+If you see `false` here, you aren't using small ICU and **this package won’t do
+anything useful for you,** although it is harmless.
 
 ### To use
+
+First, you must have a Node.js that is configured for `small-icu`.
+See above.
 
 `npm install full-icu`
 
@@ -20,6 +52,9 @@ Instructions will be printed out on how to activate this data for your version o
 This work gets done in a `postinstall` script which copies the `icudt*.dat` file up to this module's level.
 
 ## API
+
+Note that this is only packaging and build metadata.
+For Internationalization API, see [Intl](https://nodejs.org/api/intl.html).
 
 `require('full-icu')` returns a few properties:
 
