@@ -16,7 +16,7 @@
   },
   "main": "full-icu.js",
   "author": "Steven R. Loomis <srl295@gmail.com>",
-  "license": "Unicode-DFS-2016",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/icu-project/full-icu-npm.git"
