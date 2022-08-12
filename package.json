@@ -19,10 +19,10 @@
   "license": "Unicode-DFS-2016",
   "repository": {
     "type": "git",
-    "url": "https://github.com/icu-project/full-icu-npm.git"
+    "url": "https://github.com/nodejs/full-icu-npm.git"
   },
   "bugs": {
-    "url": "https://github.com/unicode-org/full-icu-npm/issues"
+    "url": "https://github.com/nodejs/full-icu-npm/issues"
   },
   "dependencies": {
     "yauzl": "^2.10.0"

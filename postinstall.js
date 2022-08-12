@@ -91,4 +91,4 @@ if (fs.existsSync(fullIcu.icudat)) {
   console.log('npm install ' + fullIcu.icupkg + ' (Node ' + fullIcu.nodever + ' and small-icu ' + fullIcu.icuver + ') -> ' + fullIcu.icudat)
   npmInstall(fullIcu, advice)
 }
-console.log('News: Please see https://github.com/icu-project/full-icu-npm/issues/6')
+console.log('News: Please see https://github.com/nodejs/full-icu-npm/issues/6')
