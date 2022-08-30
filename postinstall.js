@@ -12,17 +12,17 @@ function exit (reason) {
 }
 
 if (fullIcu.oldNode) {
-  exit('Not sure how to handle node < 0.12. Exitting.')
+  exit('Not sure how to handle node < 0.12. Exiting.')
 } else if (fullIcu.noi18n) {
-  exit('Note: Your node was not compiled with i18n support. Nothing to do, Exitting.')
+  exit('Note: Your node was not compiled with i18n support. Nothing to do, Exiting.')
 } else if (fullIcu.icu_system) {
   exit('Note: Your node was compiled to link against an ' +
     'externally-provided ICU, so the locale data is not customizable ' +
-    'through this script. Exitting.')
+    'through this script. Exiting.')
 } else if (!fullIcu.icu_small) {
   // maybe already full icu, or some as-yet-unforseen case.
   exit('Note: Your node was not compiled with the ‘small-icu’ case,' +
-    ' so the ICU data is not customizable through this script. Exitting.')
+    ' so the ICU data is not customizable through this script. Exiting.')
 } else if (fullIcu.icumaj < 54) {
   // This is kind of a sanity check that the ICU version is correct.
   // ICU 54 was what Node v0.12 started with.
