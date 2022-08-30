@@ -1,6 +1,6 @@
 {
   "name": "full-icu",
-  "version": "1.4.1-0",
+  "version": "1.5.0",
   "description": "install 'full-icu' data for your current node",
   "scripts": {
     "lint": "standard && eslint *.js test/*.js",
