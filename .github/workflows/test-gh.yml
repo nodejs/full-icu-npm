@@ -1,6 +1,10 @@
 name: Integration Test GitHub
 
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+  pull_request:
 
 jobs:
   build:
