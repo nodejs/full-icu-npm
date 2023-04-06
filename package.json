@@ -34,7 +34,7 @@
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "standard": "^16.0.3",
+    "standard": "^17.0.0",
     "tap": "^16.3.4"
   }
 }
