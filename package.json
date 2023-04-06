@@ -33,7 +33,7 @@
     "eslint-plugin-header": "^3.0.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
     "standard": "^16.0.3",
     "tap": "^16.3.4"
   }
