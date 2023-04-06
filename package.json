@@ -3,7 +3,7 @@
   "version": "1.5.1-0",
   "description": "install 'full-icu' data for your current node",
   "scripts": {
-    "lint": "standard && eslint *.js test/*.js",
+    "lint": "eslint .",
     "postinstall": "node postinstall.js",
     "test": "tap test/*.js"
   },
@@ -28,13 +28,8 @@
     "yauzl": "^2.10.0"
   },
   "devDependencies": {
-    "eslint": "^7.7.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-header": "^3.0.0",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "standard": "^16.0.3",
+    "eslint": "^8.37.0",
+    "eslint-config-standard": "^17.0.0",
     "tap": "^16.3.4"
   }
 }
