@@ -21,12 +21,13 @@ module.exports = async function installFromGithub (fullIcu, advice) {
   const _baseUrl = process.env.FULL_ICU_BASEURL || 'https://github.com/unicode-org/icu/releases/'
   const baseUrl = new URL(_baseUrl)
   const versionsAsHyphen = fullIcu.icuver.replace(/\./g, '-')
-  // ICU v67/v68 use "68.1" and "67.1" in the filename instead of 68_1 and 69_1
+  // ICU v67/v68 use "68.1" and "67.1" in the filename instead of 68_1 and 67_1
+  // ICU v69-v77 use underscores in the filename and hyphens in the tag
+  // ICU >= v78 reverted to dots in both the release tag and filename
   // https://unicode-org.atlassian.net/browse/ICU-21764
-  // Can remove this conditional if the files are updated later.
-  const versionsAsUnderscore = (fullIcu.icumaj >= 69) ? fullIcu.icuver.replace(/\./g, '_') : fullIcu.icuver
-  const tag = `release-${versionsAsHyphen}`
-  const file = `icu4c-${versionsAsUnderscore}-data-bin-${icuend}.zip`
+  const versionInFilename = (fullIcu.icumaj >= 78) ? fullIcu.icuver : (fullIcu.icumaj >= 69) ? fullIcu.icuver.replace(/\./g, '_') : fullIcu.icuver
+  const tag = (fullIcu.icumaj >= 78) ? `release-${fullIcu.icuver}` : `release-${versionsAsHyphen}`
+  const file = `icu4c-${versionInFilename}-data-bin-${icuend}.zip`
   const fullUrl = new URL(`./download/${tag}/${file}`, baseUrl)
   console.log(fullUrl.toString())
   const [srcZip, tmpd] = await myFetch(fullUrl)
