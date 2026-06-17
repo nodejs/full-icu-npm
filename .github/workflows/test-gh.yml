@@ -12,24 +12,27 @@ jobs:
       fail-fast: false
       matrix:
         container:
-        # Official Node.js images.
-        - node:12
-        - node:14
-        - node:16
-        # RHEL Node.js builds are icu_small without installing the
-        # optional nodejs-full-i18n rpm.
-        - registry.access.redhat.com/ubi8/nodejs-12
-        - registry.access.redhat.com/ubi8/nodejs-14
-        # - registry.access.redhat.com/ubi8/nodejs-16
-        - node:12-slim
+          # Official Node.js images.
+          - node:22
+          - node:24
+          - node:26
+          # RHEL Node.js builds are icu_small without installing the
+          # optional nodejs-full-i18n rpm.
+          - registry.access.redhat.com/ubi8/nodejs-22
+          - registry.access.redhat.com/ubi8/nodejs-24
+          - registry.access.redhat.com/ubi8/nodejs-26
+          # - registry.access.redhat.com/ubi8/nodejs-16
+          - node:22-slim
+          - node:24-slim
+          - node:26-slim
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/checkout@v3
-      with:
-        repository: nodejs/full-icu-test
-        path: full-icu-test
-    - name: Install full-icu
-      run: docker run --rm  -v $(pwd):/usr/src/app -w /usr/src/app  ${{ matrix.container }} npm i --no-package-lock --unsafe-perm
-    - name: Test full-icu
-      run: docker run --rm -e NODE_ICU_DATA=. -v $(pwd):/usr/src/app -w /usr/src/app  ${{ matrix.container }} node ./full-icu-test/test.js
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: nodejs/full-icu-test
+          path: full-icu-test
+      - name: Install full-icu
+        run: docker run --rm  -v $(pwd):/usr/src/app -w /usr/src/app  ${{ matrix.container }} npm i --no-package-lock --unsafe-perm
+      - name: Test full-icu
+        run: docker run --rm -e NODE_ICU_DATA=. -v $(pwd):/usr/src/app -w /usr/src/app  ${{ matrix.container }} node ./full-icu-test/test.js
