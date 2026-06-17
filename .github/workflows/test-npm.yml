@@ -18,8 +18,8 @@ jobs:
           - node:24-slim
           - node:26
           - node:26-slim
-          - node:27
-          - node:27-slim
+          #- node:27
+          #- node:27-slim
           # Will fail on versions that aren't in icu4c-data
     runs-on: ubuntu-latest
     steps:
