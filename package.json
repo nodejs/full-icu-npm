@@ -28,13 +28,10 @@
     "yauzl": "^2.10.0"
   },
   "devDependencies": {
-    "eslint": "^8.44.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-header": "^3.0.0",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "standard": "^16.0.3",
-    "tap": "^16.3.4"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.5.0",
+    "globals": "^17.6.0",
+    "standard": "^17.1.2",
+    "tap": "^21.7.4"
   }
 }
