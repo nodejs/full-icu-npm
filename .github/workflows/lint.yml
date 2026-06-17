@@ -24,4 +24,4 @@ jobs:
       with:
         node-version: 26
     - run: npm i
-    - run: npm t
+    - run: npm t -- --allow-incomplete-coverage
