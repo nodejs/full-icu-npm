@@ -28,7 +28,9 @@
     "yauzl": "^2.10.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "eslint": "^10.5.0",
+    "globals": "^17.6.0",
     "standard": "^17.1.2",
     "tap": "^21.7.4"
   }
